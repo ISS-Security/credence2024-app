@@ -13,12 +13,13 @@ module Credence
     end
 
     def call(registration_data)
-      registration_token = SecureMessage.encrypt(registration_data)
-      registration_data['verification_url'] =
+      reg_details = registration_data.to_h
+      registration_token = SecureMessage.encrypt(reg_details)
+      reg_details['verification_url'] =
         "#{@config.APP_URL}/auth/register/#{registration_token}"
 
       response = HTTP.post("#{@config.API_URL}/auth/register",
-                           json: registration_data)
+                           json: reg_details)
       raise(VerificationError) unless response.code == 202
 
       JSON.parse(response.to_s)
