@@ -24,7 +24,7 @@ module Credence
               current_account: @current_account, project: project
             }
           rescue StandardError => e
-            puts "#{e.inspect}\n#{e.backtrace}"
+            App.logger.error "#{e.inspect}\n#{e.backtrace}"
             flash[:error] = 'Project not found'
             routing.redirect @projects_route
           end
@@ -74,9 +74,8 @@ module Credence
             )
 
             flash[:notice] = 'Your document was added'
-          rescue StandardError => error
-            puts error.inspect
-            puts error.backtrace
+          rescue StandardError => e
+            App.logger.error "ERROR CREATING DOCUMENT: #{e.inspect}"
             flash[:error] = 'Could not add document'
           ensure
             routing.redirect @project_route
@@ -97,7 +96,7 @@ module Credence
         # POST /projects/
         routing.post do
           routing.redirect '/auth/login' unless @current_account.logged_in?
-          puts "PROJ: #{routing.params}"
+
           project_data = Form::NewProject.new.call(routing.params)
           if project_data.failure?
             flash[:error] = Form.message_values(project_data)
@@ -111,7 +110,7 @@ module Credence
 
           flash[:notice] = 'Add documents and collaborators to your new project'
         rescue StandardError => e
-          puts "FAILURE Creating Project: #{e.inspect}"
+          App.logger.error "FAILURE Creating Project: #{e.inspect}"
           flash[:error] = 'Could not create project'
         ensure
           routing.redirect @projects_route
