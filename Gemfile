@@ -23,6 +23,7 @@ gem 'redis', '~>5.0'
 gem 'dry-validation', '~>1.10'
 gem 'rack-ssl-enforcer'
 gem 'rbnacl', '~>7.1'
+gem 'secure_headers'
 
 # Encoding
 gem 'base64', '~>0.2'
