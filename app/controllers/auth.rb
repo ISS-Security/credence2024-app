@@ -5,7 +5,7 @@ require_relative './app'
 
 module Credence
   # Web controller for Credence App
-  class App < Roda
+  class App < Roda # rubocop:disable Metrics/ClassLength
     def gh_oauth_url(config)
       url = config.GH_OAUTH_URL
       client_id = config.GH_CLIENT_ID
@@ -33,8 +33,7 @@ module Credence
             routing.redirect @login_route
           end
 
-          authenticated = AuthenticateAccount.new(App.config)
-            .call(**credentials.values)
+          authenticated = AuthenticateAccount.new.call(**credentials.values)
 
           current_account = Account.new(
             authenticated[:account],
