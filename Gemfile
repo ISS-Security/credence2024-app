@@ -12,6 +12,9 @@ gem 'slim'
 gem 'figaro'
 gem 'rake'
 
+# Encoding
+gem 'base64', '~>0.2'
+
 # Debugging
 gem 'pry'
 
