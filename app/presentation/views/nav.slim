@@ -15,7 +15,7 @@ nav role="navigation" class="navbar navbar-expand-sm navbar-dark bg-primary"
             a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"
               = "#{@current_account.username}"
 
-            div class=-"dropdown-menu"
+            div class="dropdown-menu"
               a class="dropdown-item" href="/account/#{@current_account.username}" account
               a class="dropdown-item" href='/auth/logout' logout
         - else
