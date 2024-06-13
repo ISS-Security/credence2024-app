@@ -6,8 +6,8 @@ ruby File.read('.ruby-version').strip
 # Web
 gem 'puma', '~>6.0'
 gem 'rack-session', '~>2.0'
-gem 'redis-rack' #, git: 'https://github.com/redis-store/redis-rack'
-gem 'redis-store' #, git: 'https://github.com/PikachuEXE/redis-store', branch: 'fix/redis-client-compatibility'
+gem 'redis-rack'
+gem 'redis-store'
 gem 'roda', '~>3.54'
 gem 'slim'
 
